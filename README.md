@@ -53,31 +53,25 @@ cd LoLProCoaching
 
 2. Configurar el backend
 
-Copiar
-Editar
 cd backend
 npm install
 cp .env.example .env
 Edita el archivo .env con tus propias variables:
 
 env
-Copiar
-Editar
-PORT=4000
-MONGODB_URI=mongodb+srv://<usuario>:<password>@cluster.mongodb.net/lolpro
-JWT_SECRET=tu_clave_secreta_super_segura
-Luego, inicia el servidor:
+
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/lolprocoaching
+JWT_SECRET=lolsecretjwt123
 
 
-Copiar
-Editar
+
 npm start
-El backend correrá en http://localhost:4000
+El backend correrá en http://localhost:27017
 
 3. Ejecutar el frontend
 
-Copiar
-Editar
+
 cd ../frontend
 npm install
 ng serve
