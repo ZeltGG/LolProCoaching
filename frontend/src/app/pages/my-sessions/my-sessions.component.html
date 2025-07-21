@@ -1,0 +1,36 @@
+<div class="box-card sessions-wrapper" data-aos="fade-up">
+  <h2 class="text-center mb-3">
+    🎮 Mis Sesiones
+  </h2>
+
+  <div class="filter-container">
+    <label for="status" class="filter-label">Filtrar por estado:</label>
+    <select id="status" [(ngModel)]="statusFilter" (change)="updateFilteredSessions()">
+      <option value="all">Todas</option>
+      <option value="future">Próximas</option>
+      <option value="past">Pasadas</option>
+    </select>
+  </div>
+
+  <div *ngIf="!loading && filteredSessions.length === 0" class="no-results mt-4 text-center">
+    No tienes sesiones en este estado.
+  </div>
+
+  <div *ngIf="!loading" class="session-list">
+    <div
+      class="session-card"
+      *ngFor="let s of filteredSessions"
+      data-aos="zoom-in"
+    >
+      <h3 class="session-title">{{ s.title }}</h3>
+      <p><i class="bi bi-calendar-event"></i> Fecha: {{ s.date }}</p>
+      <p><i class="bi bi-clock"></i> Hora: {{ s.time }}</p>
+      <p><i class="bi bi-hourglass-split"></i> Duración: {{ s.duration }} min</p>
+      <p>
+        <i class="bi bi-pin-angle-fill"></i>
+        Estado:
+        {{ s.status === 'pending' ? 'Por aprobación' : s.status }}
+      </p>
+    </div>
+  </div>
+</div>

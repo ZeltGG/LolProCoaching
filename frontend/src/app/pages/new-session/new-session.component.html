@@ -1,0 +1,38 @@
+<div class="new-session-wrapper">
+  <div class="new-session-card">
+    <h2 class="section-title">
+      📝 Agendar Nueva Sesión
+    </h2>
+
+    <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Asunto de la sesión:</label>
+        <input type="text" formControlName="title" />
+      </div>
+
+      <div class="form-group">
+        <label>Fecha:</label>
+        <input type="date" formControlName="date" />
+      </div>
+
+      <div class="form-group">
+        <label>Hora:</label>
+        <input type="time" formControlName="time" />
+      </div>
+
+      <div class="form-group">
+        <label>Duración (minutos):</label>
+        <input type="number" formControlName="duration" min="60" max="120" />
+      </div>
+
+      <div class="form-group">
+        <label>Cuéntame un poco de ti (opcional):</label>
+        <textarea formControlName="notes"></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary-session">
+        Enviar solicitud
+      </button>
+    </form>
+  </div>
+</div>

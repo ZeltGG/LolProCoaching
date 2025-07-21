@@ -1,0 +1,43 @@
+nav.navbar {
+    background: linear-gradient(90deg, #00BFFF, #00AEEF);
+  
+    .navbar-brand img {
+      filter: drop-shadow(0 0 3px #000);
+    }
+  
+    .nav-link {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #FFFFFF !important;
+      margin-right: 1rem;
+  
+      &:hover {
+        color: #0D0D0D !important;
+      }
+    }
+  
+    .user-info {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #FFFFFF;
+  
+      span {
+        margin-right: 1rem;
+      }
+  
+      .btn-outline-light {
+        font-size: 1rem;
+        border-color: #FFFFFF;
+        color: #FFFFFF;
+  
+        &:hover {
+          background-color: #FFFFFF;
+          color: #00BFFF;
+        }
+      }
+    }
+  }

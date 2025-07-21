@@ -1,0 +1,33 @@
+<div class="dashboard-container" *ngIf="user; else needLogin">
+  <h2>¡Bienvenido, {{ user.username || user.name }}!</h2>
+  <p>Correo: {{ user.email }}</p>
+  <p>Rol: {{ user.role }}</p>
+
+  <hr>
+
+  <div class="actions">
+    <a routerLink="/new-session" class="btn btn-primary btn-sm">Agendar nueva sesión</a>
+    <a routerLink="/my-sessions" class="btn btn-secondary btn-sm ms-2">Ver todas mis sesiones</a>
+  </div>
+
+  <hr>
+
+  <h3>Tus próximas sesiones</h3>
+
+  <div *ngIf="loading">Cargando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <ul *ngIf="!loading && upcomingSessions.length > 0">
+    <li *ngFor="let s of upcomingSessions">
+      <strong>{{ s.title }}</strong> – {{ s.date }} {{ s.time }} ({{ s.duration }} min)
+    </li>
+  </ul>
+
+  <p *ngIf="!loading && upcomingSessions.length === 0">
+    No tienes sesiones próximas.
+  </p>
+</div>
+
+<ng-template #needLogin>
+  <p>No estás autenticado. <a routerLink="/login">Inicia sesión</a>.</p>
+</ng-template>

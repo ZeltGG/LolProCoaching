@@ -1,0 +1,70 @@
+.dashboard-container {
+  padding: 2rem;
+  background-color: var(--bg-light);
+  border-radius: var(--radius);
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  color: var(--main-color);
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #ccc;
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--main-color);
+  color: #000;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: scale(1.05);
+}
+
+.session-list {
+  list-style: none;
+  padding: 0;
+}
+
+.session-card {
+  background-color: #121212;
+  padding: 1rem;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.no-sessions {
+  color: #888;
+  font-style: italic;
+}

@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <h2>Reserva tu sesión de Coaching</h2>
+  
+    <form [formGroup]="coachingForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label>Fecha:</label>
+        <input type="date" formControlName="date" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label>Hora de inicio:</label>
+        <select class="form-control" formControlName="startTime">
+          <option value="" disabled selected>Selecciona una hora</option>
+          <option *ngFor="let hour of availableHours" [value]="hour">
+            {{ hour }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label>Duración (horas):</label>
+        <select class="form-control" formControlName="duration">
+          <option value="1">1 hora</option>
+          <option value="2">2 horas</option>
+        </select>
+      </div>
+  
+      <button class="btn btn-primary" type="submit" [disabled]="coachingForm.invalid">
+        Reservar
+      </button>
+  
+      <div *ngIf="successMessage" class="alert alert-success mt-3">
+        {{ successMessage }}
+      </div>
+    </form>
+  </div>

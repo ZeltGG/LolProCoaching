@@ -1,0 +1,76 @@
+.new-session-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: radial-gradient(circle at center, #0a0a0a 30%, #000000 100%);
+}
+
+.new-session-card {
+  background-color: rgba(20, 20, 20, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  border: 1px solid rgba(0, 255, 255, 0.05);
+}
+
+.section-title {
+  color: #00e5ff;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    color: #cfcfcf;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  input,
+  textarea {
+    background-color: #121212;
+    border: 1px solid #00ffff;
+    color: white;
+    padding: 0.6rem;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #00cccc;
+    box-shadow: 0 0 5px #00ffff;
+  }
+
+  textarea {
+    resize: none;
+    min-height: 90px;
+  }
+}
+
+.btn-primary-session {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #00ffff;
+  border: none;
+  border-radius: 12px;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.btn-primary-session:hover {
+  background-color: #00cccc;
+  cursor: pointer;
+}

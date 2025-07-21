@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand" [routerLink]="['/']">
+    <img src="assets/lolprocoaching.png" alt="LoLProCoaching Logo" width="150" />
+  </a>
+
+  <div class="collapse navbar-collapse justify-content-between">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Inicio</a>
+      </li>
+
+      <ng-container *ngIf="!user">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">Registrarse</a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="user">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/new-session">Agendar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/my-sessions">Mis Sesiones</a>
+        </li>
+      </ng-container>
+    </ul>
+
+    <div *ngIf="user" class="d-flex align-items-center user-info">
+      <span class="me-3">Hola, {{ user.username || user.name }}</span>
+      <button (click)="logout()" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+    </div>
+  </div>
+</nav>
