@@ -48,7 +48,7 @@ Este repositorio contiene un proyecto full stack dividido en:
 bash
 Copiar
 Editar
-git clone https://github.com/TU_USUARIO/LoLProCoaching.git
+git clone https://github.com/ZeltGG/LoLProCoaching.git
 cd LoLProCoaching
 
 2. Configurar el backend
