@@ -42,14 +42,6 @@ Este repositorio contiene un proyecto full stack dividido en:
 
 ---
 
-## 📷 Vistas de ejemplo
-
-| Home | Dashboard | Nueva Sesión |
-|------|-----------|---------------|
-| ![Home](./screenshots/home.png) | ![Dashboard](./screenshots/dashboard.png) | ![New Session](./screenshots/new-session.png) |
-
----
-
 ## 🛠️ Cómo ejecutar el proyecto localmente
 
 1. Clonar el repositorio
