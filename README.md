@@ -45,14 +45,14 @@ Este repositorio contiene un proyecto full stack dividido en:
 ## 🛠️ Cómo ejecutar el proyecto localmente
 
 1. Clonar el repositorio
-bash
+
 Copiar
 Editar
 git clone https://github.com/ZeltGG/LoLProCoaching.git
 cd LoLProCoaching
 
 2. Configurar el backend
-bash
+
 Copiar
 Editar
 cd backend
@@ -68,14 +68,14 @@ MONGODB_URI=mongodb+srv://<usuario>:<password>@cluster.mongodb.net/lolpro
 JWT_SECRET=tu_clave_secreta_super_segura
 Luego, inicia el servidor:
 
-bash
+
 Copiar
 Editar
 npm start
 El backend correrá en http://localhost:4000
 
 3. Ejecutar el frontend
-bash
+
 Copiar
 Editar
 cd ../frontend
