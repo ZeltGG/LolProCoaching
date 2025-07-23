@@ -39,6 +39,8 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "baseHref": "/LolProCoaching/",
+              "outputHashing": "all",
               "budgets": [
                 {
                   "type": "initial",
@@ -50,8 +52,7 @@
                   "maximumWarning": "40kB",
                   "maximumError": "60kB"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,

@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http'; // 👈 IMPORTANTE para habilitar HttpClient
-import { SessionService } from '../../services/session.service';
+import { SessionService } from '../../services/session.service'; // ✅ Servicio para crear sesiones
 
 @Component({
   selector: 'app-new-session',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule // 👈 AÑADIDO: necesario para que HttpClient funcione
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './new-session.component.html',
   styleUrls: ['./new-session.component.scss'],
 })
@@ -31,7 +26,7 @@ export class NewSessionComponent implements OnInit {
         60,
         [Validators.required, Validators.min(60), Validators.max(120)],
       ],
-      notes: [''],
+      notes: [''] // Este será usado como description
     });
   }
 
@@ -40,8 +35,6 @@ export class NewSessionComponent implements OnInit {
   onSubmit(): void {
     this.submitted = true;
 
-    console.log('🚀 onSubmit ejecutado');
-
     if (this.sessionForm.invalid) {
       console.warn('⚠️ Formulario inválido:', this.sessionForm.value);
       return;
@@ -49,12 +42,12 @@ export class NewSessionComponent implements OnInit {
 
     const formData = this.sessionForm.value;
 
-    const combinedDateTime = new Date(`${formData.date}T${formData.time}`);
     const sessionData = {
-      title: formData.title,
-      date: combinedDateTime.toISOString(),
-      duration: formData.duration,
-      notes: formData.notes,
+      title: formData.title.trim(),
+      description: formData.notes?.trim() || '',     // ✅ "notes" se envía como "description"
+      date: formData.date,                           // ✅ Campo separado para fecha
+      time: formData.time,                           // ✅ Campo separado para hora
+      duration: Number(formData.duration)            // ✅ Duración numérica
     };
 
     console.log('📤 Enviando sesión al backend:', sessionData);
@@ -68,7 +61,7 @@ export class NewSessionComponent implements OnInit {
       },
       error: (err) => {
         console.error('❌ Error al crear sesión:', err);
-        alert('Ocurrió un error al agendar la sesión');
+        alert(err?.error?.message || 'Error al agendar la sesión');
       }
     });
   }
