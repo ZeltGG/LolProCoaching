@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SessionService } from '../../services/session.service'; // ✅ Servicio para crear sesiones
+import { SessionService } from '../../services/session.service'; // ✅ Servicio para enviar la sesión
 
 @Component({
   selector: 'app-new-session',
@@ -18,6 +18,7 @@ export class NewSessionComponent implements OnInit {
     private fb: FormBuilder,
     private sessionService: SessionService
   ) {
+    // ✅ Inicializa formulario con validaciones
     this.sessionForm = this.fb.group({
       title: ['', Validators.required],
       date: ['', Validators.required],
@@ -26,12 +27,13 @@ export class NewSessionComponent implements OnInit {
         60,
         [Validators.required, Validators.min(60), Validators.max(120)],
       ],
-      notes: [''] // Este será usado como description
+      notes: [''] // Se enviará como "description"
     });
   }
 
   ngOnInit(): void {}
 
+  // ✅ Enviar formulario
   onSubmit(): void {
     this.submitted = true;
 
@@ -44,10 +46,10 @@ export class NewSessionComponent implements OnInit {
 
     const sessionData = {
       title: formData.title.trim(),
-      description: formData.notes?.trim() || '',     // ✅ "notes" se envía como "description"
+      description: formData.notes?.trim() || '',     // ✅ Backend espera "description"
       date: formData.date,                           // ✅ Campo separado para fecha
       time: formData.time,                           // ✅ Campo separado para hora
-      duration: Number(formData.duration)            // ✅ Duración numérica
+      duration: Number(formData.duration)            // ✅ Convertir a número
     };
 
     console.log('📤 Enviando sesión al backend:', sessionData);
@@ -61,7 +63,7 @@ export class NewSessionComponent implements OnInit {
       },
       error: (err) => {
         console.error('❌ Error al crear sesión:', err);
-        alert(err?.error?.message || 'Error al agendar la sesión');
+        alert(err?.error?.message || 'Ocurrió un error al agendar la sesión');
       }
     });
   }
