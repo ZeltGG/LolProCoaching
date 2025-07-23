@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // 👈 import correcto
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
-  private apiUrl = 'http://localhost:3000/api/sessions';
+  private apiUrl = `${environment.apiUrl}/sessions`; // 👈 URL dinámica según entorno
 
   constructor(private http: HttpClient) {}
 

@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { SessionService } from '../../services/session.service'; // 👈 importa el servicio
+import { HttpClientModule } from '@angular/common/http'; // 👈 IMPORTANTE para habilitar HttpClient
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-new-session',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule // 👈 AÑADIDO: necesario para que HttpClient funcione
+  ],
   templateUrl: './new-session.component.html',
   styleUrls: ['./new-session.component.scss'],
 })
@@ -16,7 +21,7 @@ export class NewSessionComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private sessionService: SessionService // 👈 injecta el servicio
+    private sessionService: SessionService
   ) {
     this.sessionForm = this.fb.group({
       title: ['', Validators.required],
@@ -35,6 +40,8 @@ export class NewSessionComponent implements OnInit {
   onSubmit(): void {
     this.submitted = true;
 
+    console.log('🚀 onSubmit ejecutado');
+
     if (this.sessionForm.invalid) {
       console.warn('⚠️ Formulario inválido:', this.sessionForm.value);
       return;
@@ -42,7 +49,6 @@ export class NewSessionComponent implements OnInit {
 
     const formData = this.sessionForm.value;
 
-    // Combinar fecha y hora en un solo campo ISO
     const combinedDateTime = new Date(`${formData.date}T${formData.time}`);
     const sessionData = {
       title: formData.title,
