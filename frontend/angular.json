@@ -17,7 +17,6 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "baseHref": "/LolProCoaching/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -34,6 +33,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/LolProCoaching/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

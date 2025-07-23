@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment'; // 👈 import cor
   providedIn: 'root'
 })
 export class SessionService {
-  private apiUrl = `${environment.apiUrl}/sessions`; // 👈 URL dinámica según entorno
+  private apiUrl = `${environment.apiUrl}/sessions`; 
 
   constructor(private http: HttpClient) {}
 
