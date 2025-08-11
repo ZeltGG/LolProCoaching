@@ -29,11 +29,11 @@
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "baseHref": "/LolProCoaching/"
           },
           "configurations": {
             "production": {
-              "baseHref": "/LolProCoaching/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

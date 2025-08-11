@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 
 const authRoutes = require('./routes/auth');
 const sessionRoutes = require('./routes/sessions');
@@ -9,9 +10,13 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Middleware CORS mejorado: permite tanto localhost como GitHub Pages
+// ✅ Middleware CORS mejorado
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:4200', 'https://zeltgg.github.io'];
+  const allowedOrigins = [
+    'http://localhost:4200',
+    'https://zeltgg.github.io',
+    'http://3.142.96.45'
+  ];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {
@@ -21,35 +26,37 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  // ✅ Permitir preflight (OPTIONS)
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-
+  if (req.method === 'OPTIONS') return res.sendStatus(200);
   next();
 });
 
-// Middleware para parsear JSON
 app.use(express.json());
 
-// Rutas
+// ✅ Rutas API
 app.use('/api/auth', authRoutes);
 app.use('/api/sessions', sessionRoutes);
 
-// Conexión a MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('✅ Conectado a MongoDB'))
-.catch(err => console.error('❌ Error conectando a MongoDB:', err));
+// ✅ SERVIR FRONTEND DESDE frontend (sin dist/browser)
+const frontendPath = path.join(__dirname, '../frontend');
+app.use(express.static(frontendPath));
 
-// Puerto del servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+// ✅ Redirección para rutas Angular (SPA)
+app.get('*', (req, res, next) => {
+  if (req.originalUrl.startsWith('/api/')) return next(); // deja pasar APIs
+  if (req.originalUrl.includes('.')) return res.status(404).send('Archivo no encontrado');
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
+// ✅ Ruta raíz backend
 app.get('/', (req, res) => {
   res.send('🚀 LoLProCoaching backend en línea y conectado a MongoDB Atlas');
 });
+
+// ✅ Conexión a MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ Conectado a MongoDB'))
+  .catch(err => console.error('❌ Error conectando a MongoDB:', err));
+
+
+// ✅ Exportar app para Jest
+module.exports = app;

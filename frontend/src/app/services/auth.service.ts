@@ -19,7 +19,11 @@ export class AuthService {
   }
 
   register(userData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, userData);
+    return this.http.post(`${this.apiUrl}/register`, userData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 
   setUser(user: any, token: string): void {
